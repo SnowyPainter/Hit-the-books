@@ -21,11 +21,18 @@ else:
 if(day < 10):
     day = "0{}".format(day)
 
+wordsByDay = dictionary["day{}".format(day)]
+print("최소 {}개는 무한 반복으로 외운다".format(len(wordsByDay)))
+wrongs = []
 while True:
-    for (word, mean) in dictionary["day{}".format(day)]:
+    for (word, mean) in wordsByDay:
         w = input("What does ' {} ' Mean? : ".format(word))
         if(mean.find(w) != -1):
             print("\t정답")
         else:
             print("\t오답")
-            print(mean)
+            wrongs = wrongs.append((word, mean))
+        print(mean)
+    print("다시 외우기")
+    for w in wrongs:
+        print("{} : {}".format(w[0], w[1]))
